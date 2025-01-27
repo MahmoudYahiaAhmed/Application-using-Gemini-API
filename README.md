@@ -1,19 +1,18 @@
-# Google API Text Generator with Chat UI
+# Google API Text Generator with FastAPI
 
-This Streamlit application provides an interactive chat interface that allows users to generate text using the Google Generative AI API (Gemini-Pro). The app leverages the Google Generative AI to generate responses to user inputs and displays them in a chat format.
+This FastAPI application provides an endpoint that allows users to generate text using the Google Generative AI API (Gemini-Pro). The app leverages the Google Generative AI to generate responses to user inputs.
 
 ## Features
 
-- **Interactive Chat UI:** Users can input text and receive AI-generated responses in a chat interface.
+- **API Endpoint:** Users can send a POST request with text and receive AI-generated responses.
 - **Google Generative AI Integration:** The app is configured to use the Google Generative AI API to generate text responses.
-- **Session State Management:** User inputs and AI responses are stored in session state, allowing for a continuous conversation experience.
 
 ## Prerequisites
 
 Before you can run this app, make sure you have the following:
 
 - Python 3.7 or higher
-- Streamlit
+- FastAPI
 - Google Generative AI Python Client Library
 - A Google API Key with access to the Generative AI API
 
@@ -24,3 +23,44 @@ Before you can run this app, make sure you have the following:
    ```bash
    git clone https://github.com/your-username/your-repository.git
    cd your-repository
+   ```
+
+2. Install the required Python packages.
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file in the root directory of the project and add your Google API key.
+
+   ```env
+   Google_api_key=your_google_api_key
+   ```
+
+## Running the Application
+
+To run the FastAPI application, use the following command:
+
+```bash
+uvicorn main:app --reload
+```
+
+This will start the FastAPI server, and you can access the API documentation at `http://127.0.0.1:8000/docs`.
+
+## Usage
+
+To generate text using the API, send a POST request to the `/generate` endpoint with a JSON payload containing the text input.
+
+Example request:
+
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/generate' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "Your input text here"
+}'
+```
+
+The response will contain the generated text from the Google Generative AI.
